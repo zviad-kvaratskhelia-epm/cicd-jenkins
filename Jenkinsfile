@@ -7,6 +7,18 @@ pipeline {
                 checkout scm
             }
         }
+        stage("Build Docker Image") {
+           steps {
+                script {
+                    if (env.BRANCH_NAME == "main") {
+                        sh "docker build -t nodemain:v1.0 ."
+                    }
+                    else {
+                        sh "docker build -t nodedev:v1.0 ."
+                    }
+                }
+           }
+        }
     }
 }
 

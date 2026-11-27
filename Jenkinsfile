@@ -2,9 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage('checkout') {
+        stage("checkout") {
             steps {
                 checkout scm
+            }
+        }
+        stage("build") {
+            steps {
+                sh "npm install"
+            }
+        }
+        stage("test") {
+            steps {
+                sh "npm test"
             }
         }
         stage("Build Docker Image") {
@@ -18,6 +28,11 @@ pipeline {
                     }
                 }
            }
+        }
+        stage("deploy") {
+            steps {
+                
+            }
         }
     }
 }

@@ -29,11 +29,19 @@ pipeline {
                 }
            }
         }
-        // stage("deploy") {
-        //     steps {
-
-        //     }
-        // }
+        stage("deploy") {
+            steps {
+                script {
+                   sh "docker rm -f $(docker ps -qa)"
+                   if (env.BRANCH_NAME == "main") {
+                    sh "docker run -d --expose 3000 -p 3000:3000 nodemain:v1.0"
+                   }
+                   else {
+                    sh "docker run -d --expose 3001 -p 3001:3000 nodedev:v1.0"
+                   }
+                }
+            }
+        }
     }
 }
 

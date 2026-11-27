@@ -29,11 +29,11 @@ pipeline {
                 }
            }
         }
-        stage("deploy") {
-            steps {
-                
-            }
-        }
+        // stage("deploy") {
+        //     steps {
+
+        //     }
+        // }
     }
 }
 
